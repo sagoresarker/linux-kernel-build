@@ -23,6 +23,14 @@
 CONFIG_MODULES=y
 
 # -----------------------------------------------------------------------------
+# Virtio MMIO Command Line Devices
+# -----------------------------------------------------------------------------
+# Enable specifying virtio-mmio devices via kernel command line.
+# This provides a fallback when ACPI device discovery fails.
+# Firecracker exposes virtio-mmio devices at specific addresses.
+CONFIG_VIRTIO_MMIO_CMDLINE_DEVICES=y
+
+# -----------------------------------------------------------------------------
 # VXLAN / Tunnel / Virtual Network Devices
 # -----------------------------------------------------------------------------
 # Flannel's default backend creates VXLAN overlay interfaces.
