@@ -1,0 +1,426 @@
+@/root/sagoresarker/pulse-operation/linux-kernel-build root@bm-54-39:~/sagoresarker/pulse-operation/linux-kernel-build# ./scripts/build-kernel.sh
+[17:15:36] =============================================
+[17:15:36] Firecracker K3s Kernel Builder
+[17:15:36] Kernel version: 6.1.164
+[17:15:36] Build jobs:     12
+[17:15:36] Build dir:      /root/sagoresarker/pulse-operation/linux-kernel-build/build
+[17:15:36] =============================================
+
+[17:15:36] All prerequisites satisfied
+[17:15:36] Kernel tarball already exists: /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164.tar.xz
+[17:15:36] Kernel source already extracted at /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164
+[17:15:36] Firecracker base config already exists
+[17:15:36] Applying Firecracker base config...
+[17:15:36] Merging k3s config fragment...
+Using .config as base
+Merging /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment
+Value of CONFIG_VXLAN is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_VXLAN is not set
+New value: CONFIG_VXLAN=y
+
+Value of CONFIG_TUN is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_TUN is not set
+New value: CONFIG_TUN=y
+
+Value of CONFIG_DUMMY is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_DUMMY is not set
+New value: CONFIG_DUMMY=y
+
+Value of CONFIG_MACVLAN is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_MACVLAN is not set
+New value: CONFIG_MACVLAN=y
+
+Value of CONFIG_VLAN_8021Q is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_VLAN_8021Q is not set
+New value: CONFIG_VLAN_8021Q=y
+
+Value of CONFIG_NF_TABLES is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_TABLES is not set
+New value: CONFIG_NF_TABLES=y
+
+Value of CONFIG_NETFILTER_XT_MARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MARK is not set
+New value: CONFIG_NETFILTER_XT_MARK=y
+
+Value of CONFIG_NETFILTER_XT_CONNMARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_CONNMARK is not set
+New value: CONFIG_NETFILTER_XT_CONNMARK=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_CHECKSUM is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_CHECKSUM is not set
+New value: CONFIG_NETFILTER_XT_TARGET_CHECKSUM=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_CONNMARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_CONNMARK is not set
+New value: CONFIG_NETFILTER_XT_TARGET_CONNMARK=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_LOG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_LOG is not set
+New value: CONFIG_NETFILTER_XT_TARGET_LOG=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_TCPMSS is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_TCPMSS is not set
+New value: CONFIG_NETFILTER_XT_TARGET_TCPMSS=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_MARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_MARK is not set
+New value: CONFIG_NETFILTER_XT_TARGET_MARK=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_BPF is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_BPF is not set
+New value: CONFIG_NETFILTER_XT_MATCH_BPF=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_COMMENT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_COMMENT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_CONNBYTES is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_CONNBYTES is not set
+New value: CONFIG_NETFILTER_XT_MATCH_CONNBYTES=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_CONNMARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_CONNMARK is not set
+New value: CONFIG_NETFILTER_XT_MATCH_CONNMARK=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_CONNLIMIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_CONNLIMIT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_CONNLIMIT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_HASHLIMIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_HASHLIMIT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_HASHLIMIT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_IPRANGE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_IPRANGE is not set
+New value: CONFIG_NETFILTER_XT_MATCH_IPRANGE=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_LENGTH is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_LENGTH is not set
+New value: CONFIG_NETFILTER_XT_MATCH_LENGTH=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_LIMIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_LIMIT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_LIMIT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_MAC is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_MAC is not set
+New value: CONFIG_NETFILTER_XT_MATCH_MAC=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_MARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_MARK is not set
+New value: CONFIG_NETFILTER_XT_MATCH_MARK=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_MULTIPORT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_MULTIPORT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_MULTIPORT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_OWNER is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_OWNER is not set
+New value: CONFIG_NETFILTER_XT_MATCH_OWNER=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_PHYSDEV is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_PHYSDEV is not set
+New value: CONFIG_NETFILTER_XT_MATCH_PHYSDEV=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_PKTTYPE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_PKTTYPE is not set
+New value: CONFIG_NETFILTER_XT_MATCH_PKTTYPE=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_RECENT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_RECENT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_RECENT=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_SOCKET is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_SOCKET is not set
+New value: CONFIG_NETFILTER_XT_MATCH_SOCKET=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_STATE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_STATE is not set
+New value: CONFIG_NETFILTER_XT_MATCH_STATE=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_STATISTIC is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_STATISTIC is not set
+New value: CONFIG_NETFILTER_XT_MATCH_STATISTIC=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_STRING is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_STRING is not set
+New value: CONFIG_NETFILTER_XT_MATCH_STRING=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_TCPMSS is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_TCPMSS is not set
+New value: CONFIG_NETFILTER_XT_MATCH_TCPMSS=y
+
+Value of CONFIG_NETFILTER_NETLINK_ACCT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_NETLINK_ACCT is not set
+New value: CONFIG_NETFILTER_NETLINK_ACCT=y
+
+Value of CONFIG_NETFILTER_NETLINK_LOG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_NETLINK_LOG is not set
+New value: CONFIG_NETFILTER_NETLINK_LOG=y
+
+Value of CONFIG_NETFILTER_NETLINK_QUEUE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_NETLINK_QUEUE is not set
+New value: CONFIG_NETFILTER_NETLINK_QUEUE=y
+
+Value of CONFIG_NF_CT_NETLINK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_CT_NETLINK is not set
+New value: CONFIG_NF_CT_NETLINK=y
+
+Value of CONFIG_NF_CT_NETLINK_TIMEOUT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_CT_NETLINK_TIMEOUT is not set
+New value: CONFIG_NF_CT_NETLINK_TIMEOUT=y
+
+Value of CONFIG_NF_SOCKET_IPV4 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_SOCKET_IPV4 is not set
+New value: CONFIG_NF_SOCKET_IPV4=y
+
+Value of CONFIG_NF_SOCKET_IPV6 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_SOCKET_IPV6 is not set
+New value: CONFIG_NF_SOCKET_IPV6=y
+
+Value of CONFIG_NF_TPROXY_IPV4 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_TPROXY_IPV4 is not set
+New value: CONFIG_NF_TPROXY_IPV4=y
+
+Value of CONFIG_NF_TPROXY_IPV6 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_TPROXY_IPV6 is not set
+New value: CONFIG_NF_TPROXY_IPV6=y
+
+Value of CONFIG_NF_DUP_IPV4 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_DUP_IPV4 is not set
+New value: CONFIG_NF_DUP_IPV4=y
+
+Value of CONFIG_NF_DUP_IPV6 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_DUP_IPV6 is not set
+New value: CONFIG_NF_DUP_IPV6=y
+
+Value of CONFIG_IP_SET is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IP_SET is not set
+New value: CONFIG_IP_SET=y
+
+Value of CONFIG_NETFILTER_XT_MATCH_NFACCT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_MATCH_NFACCT is not set
+New value: CONFIG_NETFILTER_XT_MATCH_NFACCT=y
+
+Value of CONFIG_IP_VS is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IP_VS is not set
+New value: CONFIG_IP_VS=y
+
+Value of CONFIG_NET_SCH_HTB is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_HTB is not set
+New value: CONFIG_NET_SCH_HTB=y
+
+Value of CONFIG_NET_SCH_PRIO is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_PRIO is not set
+New value: CONFIG_NET_SCH_PRIO=y
+
+Value of CONFIG_NET_SCH_SFQ is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_SFQ is not set
+New value: CONFIG_NET_SCH_SFQ=y
+
+Value of CONFIG_NET_SCH_TBF is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_TBF is not set
+New value: CONFIG_NET_SCH_TBF=y
+
+Value of CONFIG_NET_SCH_INGRESS is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_INGRESS is not set
+New value: CONFIG_NET_SCH_INGRESS=y
+
+Value of CONFIG_NET_SCH_FQ is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_FQ is not set
+New value: CONFIG_NET_SCH_FQ=y
+
+Value of CONFIG_NET_SCH_FQ_CODEL is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_SCH_FQ_CODEL is not set
+New value: CONFIG_NET_SCH_FQ_CODEL=y
+
+Value of CONFIG_NET_CLS_BASIC is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_BASIC is not set
+New value: CONFIG_NET_CLS_BASIC=y
+
+Value of CONFIG_NET_CLS_BPF is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_BPF is not set
+New value: CONFIG_NET_CLS_BPF=y
+
+Value of CONFIG_NET_CLS_CGROUP is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_CGROUP is not set
+New value: CONFIG_NET_CLS_CGROUP=y
+
+Value of CONFIG_NET_CLS_U32 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_U32 is not set
+New value: CONFIG_NET_CLS_U32=y
+
+Value of CONFIG_NET_CLS_FLOWER is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_FLOWER is not set
+New value: CONFIG_NET_CLS_FLOWER=y
+
+Value of CONFIG_NET_CLS_MATCHALL is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_MATCHALL is not set
+New value: CONFIG_NET_CLS_MATCHALL=y
+
+Value of CONFIG_NET_CLS_FW is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_CLS_FW is not set
+New value: CONFIG_NET_CLS_FW=y
+
+Value of CONFIG_NET_ACT_BPF is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_BPF is not set
+New value: CONFIG_NET_ACT_BPF=y
+
+Value of CONFIG_NET_ACT_GACT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_GACT is not set
+New value: CONFIG_NET_ACT_GACT=y
+
+Value of CONFIG_NET_ACT_MIRRED is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_MIRRED is not set
+New value: CONFIG_NET_ACT_MIRRED=y
+
+Value of CONFIG_NET_ACT_PEDIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_PEDIT is not set
+New value: CONFIG_NET_ACT_PEDIT=y
+
+Value of CONFIG_NET_ACT_SKBEDIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_SKBEDIT is not set
+New value: CONFIG_NET_ACT_SKBEDIT=y
+
+Value of CONFIG_NET_ACT_CSUM is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_CSUM is not set
+New value: CONFIG_NET_ACT_CSUM=y
+
+Value of CONFIG_NET_ACT_CONNMARK is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_CONNMARK is not set
+New value: CONFIG_NET_ACT_CONNMARK=y
+
+Value of CONFIG_NET_ACT_POLICE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_ACT_POLICE is not set
+New value: CONFIG_NET_ACT_POLICE=y
+
+Value of CONFIG_NET_IPIP is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_IPIP is not set
+New value: CONFIG_NET_IPIP=y
+
+Value of CONFIG_NET_IPGRE_DEMUX is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_IPGRE_DEMUX is not set
+New value: CONFIG_NET_IPGRE_DEMUX=y
+
+Value of CONFIG_IPV6_SIT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IPV6_SIT is not set
+New value: CONFIG_IPV6_SIT=y
+
+Value of CONFIG_IPV6_TUNNEL is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IPV6_TUNNEL is not set
+New value: CONFIG_IPV6_TUNNEL=y
+
+Value of CONFIG_IP_NF_RAW is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IP_NF_RAW is not set
+New value: CONFIG_IP_NF_RAW=y
+
+Value of CONFIG_IP6_NF_RAW is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IP6_NF_RAW is not set
+New value: CONFIG_IP6_NF_RAW=y
+
+Value of CONFIG_NF_LOG_IPV4 is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_LOG_IPV4 is not set
+New value: CONFIG_NF_LOG_IPV4=y
+
+Value of CONFIG_NF_CONNTRACK_BRIDGE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_CONNTRACK_BRIDGE is not set
+New value: CONFIG_NF_CONNTRACK_BRIDGE=y
+
+Value of CONFIG_BRIDGE_NF_EBTABLES is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_BRIDGE_NF_EBTABLES is not set
+New value: CONFIG_BRIDGE_NF_EBTABLES=y
+
+Value of CONFIG_NF_CONNTRACK_FTP is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_CONNTRACK_FTP is not set
+New value: CONFIG_NF_CONNTRACK_FTP=y
+
+Value of CONFIG_NF_CONNTRACK_TFTP is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NF_CONNTRACK_TFTP is not set
+New value: CONFIG_NF_CONNTRACK_TFTP=y
+
+Value of CONFIG_NETLINK_DIAG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETLINK_DIAG is not set
+New value: CONFIG_NETLINK_DIAG=y
+
+Value of CONFIG_INET_UDP_DIAG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_INET_UDP_DIAG is not set
+New value: CONFIG_INET_UDP_DIAG=y
+
+Value of CONFIG_INET_RAW_DIAG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_INET_RAW_DIAG is not set
+New value: CONFIG_INET_RAW_DIAG=y
+
+Value of CONFIG_UNIX_DIAG is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_UNIX_DIAG is not set
+New value: CONFIG_UNIX_DIAG=y
+
+Value of CONFIG_NET_KEY is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NET_KEY is not set
+New value: CONFIG_NET_KEY=y
+
+Value of CONFIG_IPVLAN is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_IPVLAN is not set
+New value: CONFIG_IPVLAN=y
+
+Value of CONFIG_GENEVE is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_GENEVE is not set
+New value: CONFIG_GENEVE=y
+
+Value of CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT is not set
+New value: CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
+
+Value of CONFIG_CRYPTO_USER_API_HASH is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_CRYPTO_USER_API_HASH is not set
+New value: CONFIG_CRYPTO_USER_API_HASH=y
+
+Value of CONFIG_SCHEDSTATS is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_SCHEDSTATS is not set
+New value: CONFIG_SCHEDSTATS=y
+
+Value of CONFIG_NETFILTER_XT_TARGET_TPROXY is redefined by fragment /root/sagoresarker/pulse-operation/linux-kernel-build/configs/microvm-kernel-x86_64-k3s.config-fragment:
+Previous value: # CONFIG_NETFILTER_XT_TARGET_TPROXY is not set
+New value: CONFIG_NETFILTER_XT_TARGET_TPROXY=y
+
+#
+# merged configuration written to .config (needs make)
+#
+[17:15:37] Running olddefconfig to resolve dependencies...
+[17:15:38]   Fixup: forcing CONFIG_NFT_COUNTER=y (dropped by olddefconfig)
+[17:15:38]   Fixup: forcing CONFIG_NFT_CHAIN_NAT=y (dropped by olddefconfig)
+[17:15:38]   Fixup: forcing CONFIG_BPF_JIT=y (dropped by olddefconfig)
+[17:15:38]   Fixup: forcing CONFIG_BPF_JIT_ALWAYS_ON=y (dropped by olddefconfig)
+[17:15:38] Re-running olddefconfig after fixup...
+[17:15:39] ERROR: CONFIG_NFT_COUNTER=y could not be set -- check kernel Kconfig dependencies
+[17:15:39] ERROR: This symbol may not exist in kernel 6.1.164.
+[17:15:39] ERROR: Run: grep -r 'config NFT_COUNTER' /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/net/ /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/kernel/
+[17:15:39] ERROR: CONFIG_NFT_CHAIN_NAT=y could not be set -- check kernel Kconfig dependencies
+[17:15:39] ERROR: This symbol may not exist in kernel 6.1.164.
+[17:15:39] ERROR: Run: grep -r 'config NFT_CHAIN_NAT' /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/net/ /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/kernel/
+[17:15:39] ERROR: CONFIG_BPF_JIT=y could not be set -- check kernel Kconfig dependencies
+[17:15:39] ERROR: This symbol may not exist in kernel 6.1.164.
+[17:15:39] ERROR: Run: grep -r 'config BPF_JIT' /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/net/ /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/kernel/
+[17:15:39] ERROR: CONFIG_BPF_JIT_ALWAYS_ON=y could not be set -- check kernel Kconfig dependencies
+[17:15:39] ERROR: This symbol may not exist in kernel 6.1.164.
+[17:15:39] ERROR: Run: grep -r 'config BPF_JIT_ALWAYS_ON' /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/net/ /root/sagoresarker/pulse-operation/linux-kernel-build/build/linux-6.1.164/kernel/
+[17:15:39] Config applied successfully
+[17:15:39] Verifying critical config options...
+[17:15:39]   OK: CONFIG_VXLAN=y
+[17:15:39]   OK: CONFIG_GENEVE=y
+[17:15:39]   OK: CONFIG_NF_TABLES=y
+[17:15:39]   OK: CONFIG_IP_SET=y
+[17:15:39]   OK: CONFIG_IP_VS=y
+[17:15:39]   OK: CONFIG_NETFILTER_XT_MATCH_COMMENT=y
+[17:15:39]   OK: CONFIG_NETFILTER_NETLINK_ACCT=y
+[17:15:39]   OK: CONFIG_TUN=y
+[17:15:39]   OK: CONFIG_BRIDGE_NETFILTER=y
+[17:15:39]   OK: CONFIG_OVERLAY_FS=y
+[17:15:39] ERROR:   MISSING: CONFIG_BPF_JIT=y
+[17:15:39]   OK: CONFIG_DEBUG_INFO_BTF=y
+[17:15:39]   OK: CONFIG_CRYPTO_USER_API_HASH=y
+[17:15:39]   OK: CONFIG_SCHEDSTATS=y
+[17:15:39]   WARN: CONFIG_NFT_COUNTER=y (may be built into parent option)
+[17:15:39]   WARN: CONFIG_NFT_CHAIN_NAT=y (may be built into parent option)
+[17:15:39] ERROR: Some critical options are missing. The kernel may not work with k3s.
+
+please analyse it and prepare a fix for this

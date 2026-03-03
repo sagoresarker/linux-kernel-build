@@ -10,9 +10,17 @@
 #   scripts/kconfig/merge_config.sh .config /path/to/this-file
 #   make olddefconfig
 #
-# All options are set to =y (built-in) because the Firecracker base config
-# has MODULES disabled -- loadable modules are not supported.
+# Note: MODULES must be enabled for BPF_JIT support in kernel 6.1.x.
+# All k3s-specific options are built-in (=y) but module loading is enabled
+# for BPF JIT compiler support required by Cilium.
 # =============================================================================
+
+# -----------------------------------------------------------------------------
+# Module Support (required for BPF_JIT in kernel 6.1.x)
+# -----------------------------------------------------------------------------
+# The BPF JIT compiler has a Kconfig dependency on MODULES in kernel 6.1.x.
+# Without this, CONFIG_BPF_JIT cannot be enabled, breaking Cilium support.
+CONFIG_MODULES=y
 
 # -----------------------------------------------------------------------------
 # VXLAN / Tunnel / Virtual Network Devices
@@ -38,14 +46,14 @@ CONFIG_NF_TABLES_INET=y
 CONFIG_NF_TABLES_NETDEV=y
 CONFIG_NFT_NUMGEN=y
 CONFIG_NFT_CT=y
-CONFIG_NFT_COUNTER=y
+# Note: NFT_COUNTER is built into NF_TABLES in kernel 6.1.x (not a separate option)
 CONFIG_NFT_CONNLIMIT=y
 CONFIG_NFT_LOG=y
 CONFIG_NFT_LIMIT=y
 CONFIG_NFT_MASQ=y
 CONFIG_NFT_REDIR=y
 CONFIG_NFT_NAT=y
-CONFIG_NFT_CHAIN_NAT=y
+# Note: NFT_CHAIN_NAT is provided by NFT_NAT in kernel 6.1.x (not a separate option)
 CONFIG_NFT_REJECT=y
 CONFIG_NFT_REJECT_INET=y
 CONFIG_NFT_COMPAT=y

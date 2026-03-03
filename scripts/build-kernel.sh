@@ -133,10 +133,9 @@ fixup_dropped_options() {
     local needs_rerun=0
 
     # Options that make olddefconfig sometimes drops due to dependency
-    # ordering or tristate-vs-bool resolution with MODULES=n.
+    # ordering. Note: NFT_COUNTER and NFT_CHAIN_NAT don't exist as separate
+    # options in kernel 6.1.x (built into NF_TABLES).
     local force_options=(
-        NFT_COUNTER
-        NFT_CHAIN_NAT
         BPF_JIT
         BPF_JIT_ALWAYS_ON
     )
@@ -186,11 +185,9 @@ verify_config() {
         "CONFIG_SCHEDSTATS=y"
     )
 
-    # These may be folded into NF_TABLES in some 6.1.x builds.
-    # Warn but don't fail if missing -- nftables still works.
+    # Note: NFT_COUNTER and NFT_CHAIN_NAT don't exist as separate config
+    # options in kernel 6.1.x -- their functionality is built into NF_TABLES.
     local soft_options=(
-        "CONFIG_NFT_COUNTER=y"
-        "CONFIG_NFT_CHAIN_NAT=y"
     )
 
     for opt in "${critical_options[@]}"; do
