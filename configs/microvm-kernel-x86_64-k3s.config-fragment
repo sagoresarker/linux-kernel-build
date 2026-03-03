@@ -11,14 +11,14 @@
 #   make olddefconfig
 #
 # All options are set to =y (built-in) because the Firecracker base config
-# has CONFIG_MODULES=n -- loadable modules are not supported.
+# has MODULES disabled -- loadable modules are not supported.
 # =============================================================================
 
 # -----------------------------------------------------------------------------
 # VXLAN / Tunnel / Virtual Network Devices
 # -----------------------------------------------------------------------------
 # Flannel's default backend creates VXLAN overlay interfaces.
-# Without CONFIG_VXLAN, flannel exits with:
+# Without the VXLAN option, flannel exits with:
 #   "failed to create vxlan device: operation not supported"
 CONFIG_VXLAN=y
 CONFIG_TUN=y
@@ -131,7 +131,7 @@ CONFIG_NF_DUP_IPV6=y
 # IP Sets
 # -----------------------------------------------------------------------------
 # kube-router and network policy controllers use ipset for efficient
-# IP/port matching. Without CONFIG_IP_SET:
+# IP/port matching. Without the IP_SET option enabled:
 #   "ipset v7.16: Cannot open session to kernel"
 CONFIG_IP_SET=y
 CONFIG_IP_SET_MAX=256
@@ -254,7 +254,7 @@ CONFIG_IPVLAN=y
 # Cilium CNI Requirements
 # -----------------------------------------------------------------------------
 # Cilium requires Geneve tunnel support in addition to VXLAN. Without
-# CONFIG_GENEVE, the route reconciler fails with "protocol not supported"
+# the Geneve option, the route reconciler fails with "protocol not supported"
 # even when using VXLAN mode, because Cilium probes both protocols.
 CONFIG_GENEVE=y
 
@@ -263,7 +263,6 @@ CONFIG_GENEVE=y
 # the actual JIT compiler.
 CONFIG_BPF_JIT=y
 CONFIG_BPF_JIT_ALWAYS_ON=y
-CONFIG_BPF_JIT_DEFAULT_ON=y
 
 # BTF (BPF Type Format) -- modern Cilium (v1.12+) uses CO-RE eBPF programs
 # that require BTF information embedded in the kernel. Building with BTF

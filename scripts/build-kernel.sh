@@ -112,8 +112,6 @@ apply_config() {
     cp "${KERNEL_SRC_DIR}/.config.base" "${KERNEL_SRC_DIR}/.config"
 
     log "Merging k3s config fragment..."
-    # merge_config.sh may not exist before first make invocation,
-    # so fall back to manual append + olddefconfig
     if [ -x "${KERNEL_SRC_DIR}/scripts/kconfig/merge_config.sh" ]; then
         cd "$KERNEL_SRC_DIR"
         scripts/kconfig/merge_config.sh -m .config "$CONFIG_FRAGMENT"
@@ -124,7 +122,46 @@ apply_config() {
     log "Running olddefconfig to resolve dependencies..."
     make -C "$KERNEL_SRC_DIR" olddefconfig -j"$BUILD_JOBS" > /dev/null 2>&1
 
+    fixup_dropped_options
+
     log "Config applied successfully"
+}
+
+fixup_dropped_options() {
+    local config="${KERNEL_SRC_DIR}/.config"
+    local scripts_config="${KERNEL_SRC_DIR}/scripts/config"
+    local needs_rerun=0
+
+    # Options that make olddefconfig sometimes drops due to dependency
+    # ordering or tristate-vs-bool resolution with MODULES=n.
+    local force_options=(
+        NFT_COUNTER
+        NFT_CHAIN_NAT
+        BPF_JIT
+        BPF_JIT_ALWAYS_ON
+    )
+
+    for opt in "${force_options[@]}"; do
+        if ! grep -q "^CONFIG_${opt}=y$" "$config"; then
+            log "  Fixup: forcing CONFIG_${opt}=y (dropped by olddefconfig)"
+            "$scripts_config" --file "$config" --enable "$opt"
+            needs_rerun=1
+        fi
+    done
+
+    if [ "$needs_rerun" -eq 1 ]; then
+        log "Re-running olddefconfig after fixup..."
+        make -C "$KERNEL_SRC_DIR" olddefconfig -j"$BUILD_JOBS" > /dev/null 2>&1
+
+        # Verify the fixups stuck after second olddefconfig pass
+        for opt in "${force_options[@]}"; do
+            if ! grep -q "^CONFIG_${opt}=y$" "$config"; then
+                err "CONFIG_${opt}=y could not be set -- check kernel Kconfig dependencies"
+                err "This symbol may not exist in kernel ${KERNEL_VERSION}."
+                err "Run: grep -r 'config ${opt}' ${KERNEL_SRC_DIR}/net/ ${KERNEL_SRC_DIR}/kernel/"
+            fi
+        done
+    fi
 }
 
 verify_config() {
@@ -141,8 +178,6 @@ verify_config() {
         "CONFIG_NETFILTER_XT_MATCH_COMMENT=y"
         "CONFIG_NETFILTER_NETLINK_ACCT=y"
         "CONFIG_TUN=y"
-        "CONFIG_NFT_COUNTER=y"
-        "CONFIG_NFT_CHAIN_NAT=y"
         "CONFIG_BRIDGE_NETFILTER=y"
         "CONFIG_OVERLAY_FS=y"
         "CONFIG_BPF_JIT=y"
@@ -151,12 +186,27 @@ verify_config() {
         "CONFIG_SCHEDSTATS=y"
     )
 
+    # These may be folded into NF_TABLES in some 6.1.x builds.
+    # Warn but don't fail if missing -- nftables still works.
+    local soft_options=(
+        "CONFIG_NFT_COUNTER=y"
+        "CONFIG_NFT_CHAIN_NAT=y"
+    )
+
     for opt in "${critical_options[@]}"; do
         if grep -q "^${opt}$" "$config"; then
             log "  OK: $opt"
         else
             err "  MISSING: $opt"
             failed=1
+        fi
+    done
+
+    for opt in "${soft_options[@]}"; do
+        if grep -q "^${opt}$" "$config"; then
+            log "  OK: $opt"
+        else
+            log "  WARN: $opt (may be built into parent option)"
         fi
     done
 
