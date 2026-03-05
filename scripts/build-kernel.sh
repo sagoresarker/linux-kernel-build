@@ -135,7 +135,13 @@ fixup_dropped_options() {
     # Options that make olddefconfig sometimes drops due to dependency
     # ordering. Note: NFT_COUNTER and NFT_CHAIN_NAT don't exist as separate
     # options in kernel 6.1.x (built into NF_TABLES).
+    # PCI is required for ACPI initialization in Firecracker v1.14+.
     local force_options=(
+        PCI
+        PCI_MMCONFIG
+        PCI_MSI
+        PCIEPORTBUS
+        VIRTIO_PCI
         BPF_JIT
         BPF_JIT_ALWAYS_ON
     )
@@ -169,6 +175,11 @@ verify_config() {
     local failed=0
 
     local critical_options=(
+        "CONFIG_PCI=y"
+        "CONFIG_VIRTIO_PCI=y"
+        "CONFIG_VIRTIO_MMIO=y"
+        "CONFIG_VIRTIO_BLK=y"
+        "CONFIG_VIRTIO_NET=y"
         "CONFIG_VXLAN=y"
         "CONFIG_GENEVE=y"
         "CONFIG_NF_TABLES=y"

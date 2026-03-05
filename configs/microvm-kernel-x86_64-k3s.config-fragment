@@ -23,12 +23,27 @@
 CONFIG_MODULES=y
 
 # -----------------------------------------------------------------------------
+# PCI Support (required for ACPI initialization in Firecracker)
+# -----------------------------------------------------------------------------
+# Firecracker v1.14+ uses ACPI for virtio-mmio device discovery. The ACPI
+# subsystem requires CONFIG_PCI=y for proper initialization, even when PCI
+# devices are not used (pci=off in boot args). Without PCI compiled in,
+# ACPI table loading fails with AE_BAD_PARAMETER and virtio devices cannot
+# be probed, causing kernel panic.
+CONFIG_PCI=y
+CONFIG_PCI_MMCONFIG=y
+CONFIG_PCI_MSI=y
+CONFIG_PCIEPORTBUS=y
+CONFIG_VIRTIO_PCI=y
+
+# -----------------------------------------------------------------------------
 # Virtio MMIO Command Line Devices
 # -----------------------------------------------------------------------------
-# Enable specifying virtio-mmio devices via kernel command line.
-# This provides a fallback when ACPI device discovery fails.
-# Firecracker exposes virtio-mmio devices at specific addresses.
-CONFIG_VIRTIO_MMIO_CMDLINE_DEVICES=y
+# DISABLED: Firecracker v1.14+ handles virtio-mmio device discovery natively
+# via ACPI. Enabling CMDLINE_DEVICES causes the kernel to process hardcoded
+# virtio_mmio.device= boot params which conflict with Firecracker's own
+# device placement, leading to probe failures and kernel panic.
+# CONFIG_VIRTIO_MMIO_CMDLINE_DEVICES is not set
 
 # -----------------------------------------------------------------------------
 # VXLAN / Tunnel / Virtual Network Devices
