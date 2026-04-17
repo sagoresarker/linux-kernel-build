@@ -53,6 +53,15 @@ CONFIG_VIRTIO_PCI=y
 #   "failed to create vxlan device: operation not supported"
 CONFIG_VXLAN=y
 CONFIG_TUN=y
+
+# -----------------------------------------------------------------------------
+# WireGuard VPN (required for NetBird and WireGuard-based overlays)
+# -----------------------------------------------------------------------------
+# NetBird uses WireGuard as its VPN transport layer. Without this option,
+# NetBird fails with: "new wg interface: couldn't check or load tun module"
+# even though CONFIG_TUN is enabled. The wg interface itself is implemented
+# by the WireGuard driver, separate from the TUN driver.
+CONFIG_WIREGUARD=y
 CONFIG_DUMMY=y
 CONFIG_MACVLAN=y
 CONFIG_VLAN_8021Q=y

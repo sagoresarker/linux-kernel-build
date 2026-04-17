@@ -188,6 +188,7 @@ verify_config() {
         "CONFIG_NETFILTER_XT_MATCH_COMMENT=y"
         "CONFIG_NETFILTER_NETLINK_ACCT=y"
         "CONFIG_TUN=y"
+        "CONFIG_WIREGUARD=y"
         "CONFIG_BRIDGE_NETFILTER=y"
         "CONFIG_OVERLAY_FS=y"
         "CONFIG_BPF_JIT=y"
