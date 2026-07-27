@@ -144,6 +144,13 @@ fixup_dropped_options() {
         VIRTIO_PCI
         BPF_JIT
         BPF_JIT_ALWAYS_ON
+        VIRTUALIZATION
+        KVM
+        KVM_INTEL
+        KVM_AMD
+        VHOST
+        VHOST_NET
+        VHOST_VSOCK
     )
 
     for opt in "${force_options[@]}"; do
@@ -195,6 +202,12 @@ verify_config() {
         "CONFIG_DEBUG_INFO_BTF=y"
         "CONFIG_CRYPTO_USER_API_HASH=y"
         "CONFIG_SCHEDSTATS=y"
+        "CONFIG_VIRTUALIZATION=y"
+        "CONFIG_KVM=y"
+        "CONFIG_KVM_INTEL=y"
+        "CONFIG_KVM_AMD=y"
+        "CONFIG_VHOST_NET=y"
+        "CONFIG_VHOST_VSOCK=y"
     )
 
     # Note: NFT_COUNTER and NFT_CHAIN_NAT don't exist as separate config

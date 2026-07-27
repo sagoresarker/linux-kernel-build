@@ -287,6 +287,24 @@ check_option RECOMMENDED CONFIG_BPF_JIT_ALWAYS_ON   y "BPF JIT always on"
 check_option RECOMMENDED CONFIG_CRYPTO_USER_API      y "Crypto user API"
 echo ""
 
+# ---- Section: Nested KVM ----
+printf "${BLUE}--- Nested KVM (running VMs inside the microVM) ---${NC}\n"
+check_option CRITICAL CONFIG_VIRTUALIZATION          y "Virtualization support (gates all KVM options)"
+check_option CRITICAL CONFIG_KVM                     y "KVM core (provides /dev/kvm)"
+check_option CRITICAL CONFIG_KVM_INTEL               y "KVM on Intel hosts (needs VMX from L0)"
+check_option CRITICAL CONFIG_KVM_AMD                 y "KVM on AMD hosts (needs SVM from L0)"
+check_option CRITICAL CONFIG_HIGH_RES_TIMERS         y "High-resolution timers (KVM dependency)"
+check_option CRITICAL CONFIG_X86_LOCAL_APIC          y "Local APIC (KVM dependency)"
+check_option RECOMMENDED CONFIG_VHOST_NET            y "vhost-net (fast networking for nested guests)"
+check_option RECOMMENDED CONFIG_VHOST_VSOCK          y "vhost-vsock (nested Firecracker guest agent)"
+check_option RECOMMENDED CONFIG_HUGETLBFS            y "hugetlbfs (nested guest memory backing)"
+check_option RECOMMENDED CONFIG_MEMFD_CREATE         y "memfd_create (nested guest memory backing)"
+echo ""
+echo "  Note: these options make the kernel capable of nesting. The L0"
+echo "  hypervisor must also expose vmx/svm in CPUID -- verify inside the"
+echo "  microVM with: grep -o 'vmx\\|svm' /proc/cpuinfo"
+echo ""
+
 # ---- Summary ----
 echo "============================================="
 TOTAL=$((PASS + FAIL + WARN))

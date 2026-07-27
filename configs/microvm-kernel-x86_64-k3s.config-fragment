@@ -321,3 +321,47 @@ CONFIG_SCHEDSTATS=y
 # TPROXY and CT targets -- required for Cilium L7 and FQDN policy redirection.
 CONFIG_NETFILTER_XT_TARGET_TPROXY=y
 CONFIG_NETFILTER_XT_TARGET_CT=y
+
+# -----------------------------------------------------------------------------
+# Nested Virtualization (KVM inside the microVM)
+# -----------------------------------------------------------------------------
+# The Firecracker base config ships with "# CONFIG_VIRTUALIZATION is not set",
+# so the guest kernel has no KVM host support at all -- /dev/kvm never appears
+# and anything that needs it (QEMU, cloud-hypervisor, kubevirt, a nested
+# Firecracker) fails with "Could not access KVM kernel module".
+#
+# IMPORTANT -- this is only half the equation. Nested virtualization also
+# requires the L0 hypervisor to expose the hardware virt CPUID bit (VMX on
+# Intel, SVM on AMD) to the guest. Upstream Firecracker masks these bits, so
+# these options make the kernel *capable* of nesting but the modules will still
+# report "kvm: no hardware support" unless your host/VMM exposes them. Check
+# from inside the microVM before debugging further:
+#   grep -o 'vmx\|svm' /proc/cpuinfo   # empty => L0 is not exposing virt
+#   ls -l /dev/kvm                     # present => this kernel config worked
+# On the host, nested must also be on: cat /sys/module/kvm_intel/parameters/nested
+CONFIG_VIRTUALIZATION=y
+CONFIG_KVM=y
+CONFIG_KVM_INTEL=y
+CONFIG_KVM_AMD=y
+
+# Xen HVM shim and KVM build-time -Werror are not wanted here.
+# CONFIG_KVM_XEN is not set
+# CONFIG_KVM_WERROR is not set
+
+# vhost drivers -- in-kernel datapath for the L2 guests. Without VHOST_NET,
+# QEMU/cloud-hypervisor fall back to userspace virtio-net inside an already
+# nested VM, which is painfully slow. VHOST_VSOCK is required if the nested
+# VMM is Firecracker itself (it uses vsock for its guest agent channel).
+# The base config has VHOST_MENU=y but leaves all three drivers unset.
+CONFIG_VHOST=y
+CONFIG_VHOST_NET=y
+CONFIG_VHOST_VSOCK=y
+CONFIG_VSOCKETS_LOOPBACK=y
+
+# Note: the following KVM prerequisites are already =y in the Firecracker base
+# config and are listed here only so the dependency chain is documented:
+#   CONFIG_HIGH_RES_TIMERS, CONFIG_X86_LOCAL_APIC, CONFIG_X86_X2APIC,
+#   CONFIG_CPU_SUP_INTEL, CONFIG_CPU_SUP_AMD, CONFIG_EVENTFD,
+#   CONFIG_HUGETLBFS, CONFIG_MEMFD_CREATE, CONFIG_DEVTMPFS, CONFIG_TUN
+# Everything else (KVM_VFIO, KVM_ASYNC_PF, KVM_XFER_TO_GUEST_WORK,
+# HAVE_KVM_IRQCHIP, IRQ_BYPASS_MANAGER, ...) is auto-selected by CONFIG_KVM.

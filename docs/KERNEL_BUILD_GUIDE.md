@@ -368,6 +368,67 @@ sections:
 5. **IP Sets** -- efficient IP/port set matching
 6. **IPVS** -- kernel-level load balancing for kube-proxy
 7. **Traffic Control** -- QoS and CNI plugin support
+8. **Nested KVM** -- `/dev/kvm` inside the microVM (see below)
 
 All options are set to `=y` (built-in) since `CONFIG_MODULES` is disabled in the
 Firecracker base config.
+
+## Nested Virtualization (KVM inside the microVM)
+
+The Firecracker base config ships with `# CONFIG_VIRTUALIZATION is not set`, which
+compiles out KVM entirely -- `/dev/kvm` never appears in the guest and anything that
+needs it (QEMU, cloud-hypervisor, KubeVirt, a nested Firecracker) fails with
+`Could not access KVM kernel module: No such file or directory`.
+
+The fragment enables:
+
+| Option | Purpose |
+| --- | --- |
+| `CONFIG_VIRTUALIZATION=y` | Gate that unlocks every KVM option |
+| `CONFIG_KVM=y` | KVM core -- creates `/dev/kvm` |
+| `CONFIG_KVM_INTEL=y` | Intel VMX backend |
+| `CONFIG_KVM_AMD=y` | AMD SVM backend |
+| `CONFIG_VHOST=y` / `CONFIG_VHOST_NET=y` | In-kernel virtio-net datapath for L2 guests |
+| `CONFIG_VHOST_VSOCK=y` | Needed if the nested VMM is Firecracker itself |
+| `CONFIG_VSOCKETS_LOOPBACK=y` | Local vsock loopback for nested agent channels |
+
+Everything else KVM needs (`KVM_VFIO`, `KVM_ASYNC_PF`, `KVM_XFER_TO_GUEST_WORK`,
+`HAVE_KVM_IRQCHIP`, `IRQ_BYPASS_MANAGER`, ...) is auto-selected by `CONFIG_KVM`, and
+the prerequisites `HIGH_RES_TIMERS`, `X86_LOCAL_APIC`, `X86_X2APIC`, `CPU_SUP_INTEL`,
+`CPU_SUP_AMD`, `EVENTFD`, `HUGETLBFS`, `MEMFD_CREATE` and `DEVTMPFS` are already `=y`
+in the Firecracker base config.
+
+### The kernel config is only half of it
+
+Nested virtualization also requires the **L0 hypervisor to expose the hardware virt
+CPUID bit** (`vmx` on Intel, `svm` on AMD) to the guest. Upstream Firecracker masks
+these bits, so this kernel will boot with KVM compiled in but `kvm_intel` / `kvm_amd`
+will report `kvm: no hardware support` on a stock Firecracker.
+
+Diagnose in this order, from inside the microVM:
+
+```bash
+# 1. Is the L0 hypervisor exposing hardware virt at all?
+grep -o 'vmx\|svm' /proc/cpuinfo | head -1
+#    empty  -> Firecracker is not exposing it; no guest kernel config can fix this
+#    "vmx"  -> good, continue
+
+# 2. Did this kernel config take effect?
+ls -l /dev/kvm
+#    missing -> CONFIG_KVM did not get set; re-run scripts/verify-kernel-config.sh
+
+# 3. Why did the backend refuse to initialize?
+dmesg | grep -i kvm
+```
+
+And on the **host** (L0), nested must be enabled for the hardware backend:
+
+```bash
+cat /sys/module/kvm_intel/parameters/nested   # expect Y (or 1)
+# to enable: echo "options kvm_intel nested=1" | sudo tee /etc/modprobe.d/kvm.conf
+#            sudo modprobe -r kvm_intel && sudo modprobe kvm_intel
+```
+
+If step 1 comes back empty, the blocker is Firecracker's CPUID handling, not this
+build -- you would need a VMM that passes the virt bits through (QEMU/KVM and
+cloud-hypervisor both do).
